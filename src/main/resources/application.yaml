@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: matrix-158-spring-practice-app
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/mj_158
+    username: root
+    password: 12345678
+    driver-class-name: com.mysql.cj.jdbc.Driver
