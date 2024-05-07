@@ -1,30 +1,32 @@
 package com.matrix.matrix158springpracticeapp.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.util.List;
 
-@Table
 @Entity
 @Data
-public class Student {
+@Table
+public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @JoinColumn(name = "user_id")
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private User user;
-    private String stNumber;
-    private String file;
+    private String speciality;
+    private String educationInfo;
+    private String experienceInfo;
+
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
+    private List<SocialMedia> socialMedia;
+
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
+    private List<Group> groupList;
+
     private Integer status;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    private List<Reservation> reservationList;
 
-    @NotNull
-    @Size(max = 16, min = 16)
-    private String bankAccount;
+
 }
