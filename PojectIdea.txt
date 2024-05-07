@@ -1,0 +1,7 @@
+Kurs sistemi:
+ - Tələbələr mövcud kurslara baxa və yer rezerv edə bilərlər.
+ - Tələbə kurs seçə, rezerv etmək istədiyi yerlərin sayını göstərə və rezervasiyanı təsdiq edə bilər.
+ - Sistem hər kurs üçün mövcud yerləri qeyd etməklə, artıq rezervasiyanın qarşısını almalıdır.
+ - Kursu rezervasiya etdikdən sonra tələbələr ödənişə davam edəcəklər.
+ - Səlahiyyətlilər kursları və sifarişləri idarə etmək üçün inzibati imtiyazlara malikdir.
+ - Tələbələr kurslara baxa, rezervasiya edə və rezervasiya tarixçələrinə baxa bilərlər.
