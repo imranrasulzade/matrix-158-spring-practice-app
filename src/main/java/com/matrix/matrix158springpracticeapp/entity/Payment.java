@@ -6,9 +6,9 @@ import com.matrix.matrix158springpracticeapp.enums.PaymentStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity
 @Data
-@Table
+@Entity
+@Table(name = "mj_payment")
 public class Payment {
 
     @Id

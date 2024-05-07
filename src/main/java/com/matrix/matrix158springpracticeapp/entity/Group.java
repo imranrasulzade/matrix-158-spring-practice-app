@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "groups")
+@Table(name = "mj_group")
 public class Group {
 
     @Id

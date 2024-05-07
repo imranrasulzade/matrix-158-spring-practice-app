@@ -7,9 +7,9 @@ import lombok.Data;
 
 import java.util.List;
 
-@Table
-@Entity
 @Data
+@Entity
+@Table(name = "mj_student")
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -6,10 +6,9 @@ import lombok.Data;
 
 import java.util.List;
 
-@Entity
-@Table
 @Data
-//sahe
+@Entity
+@Table(name = "mj_category")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

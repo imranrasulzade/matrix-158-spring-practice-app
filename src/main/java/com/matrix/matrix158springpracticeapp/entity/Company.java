@@ -3,11 +3,9 @@ package com.matrix.matrix158springpracticeapp.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
-
-@Entity
-@Table
 @Data
+@Entity
+@Table(name = "mj_company")
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

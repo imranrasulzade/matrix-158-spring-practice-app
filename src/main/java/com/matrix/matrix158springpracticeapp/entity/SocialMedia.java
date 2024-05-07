@@ -3,9 +3,9 @@ package com.matrix.matrix158springpracticeapp.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity
-@Table
 @Data
+@Entity
+@Table(name = "mj_social_media")
 public class SocialMedia {
 
     @Id
