@@ -3,10 +3,11 @@ package com.matrix.matrix158springpracticeapp.service.interfaces;
 import com.matrix.matrix158springpracticeapp.entity.Company;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CompanyService {
 
-    Company findById(Integer id);
+    Optional<Company> findById(Integer id);
 
     List<Company> findAll();
 
