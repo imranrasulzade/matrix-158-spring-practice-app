@@ -1,9 +1,7 @@
 package com.matrix.matrix158springpracticeapp.service.interfaces;
 
 import com.matrix.matrix158springpracticeapp.dto.request.CategoryRequest;
-import com.matrix.matrix158springpracticeapp.dto.request.StudentRequest;
 import com.matrix.matrix158springpracticeapp.dto.response.CategoryResponse;
-import com.matrix.matrix158springpracticeapp.dto.response.StudentResponse;
 
 import java.util.List;
 
