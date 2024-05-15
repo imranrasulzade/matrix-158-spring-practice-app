@@ -24,7 +24,7 @@
 ////    private final UserLogRepository userLogRepository; //yaradilacaq
 //    private final UserRepository userRepository;
 
-//      DEPENDENCY
+//    DEPENDENCY
 //    https://mvnrepository.com/artifact/org.aspectj/aspectjrt
 //    runtimeOnly group: 'org.aspectj', name: 'aspectjrt', version: '1.9.22'
 
