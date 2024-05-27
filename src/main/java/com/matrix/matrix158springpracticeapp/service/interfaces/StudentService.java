@@ -11,9 +11,9 @@ import java.util.List;
 
 public interface StudentService {
 
-    StudentResponse getById(Integer id);
-    List<StudentResponse> getAll();
-    StudentResponse add(StudentRequest studentRequest);
+    StudentResponse findById(Integer id);
+    List<StudentResponse> findAll();
+    StudentResponse save(StudentRequest studentRequest);
     StudentResponse update(StudentRequest studentRequest,Integer id);
-    void delete(Integer id);
+    void deleteById(Integer id);
 }
