@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 public class StudentRequest {
 
-    private Long userId;
+    private Integer userId;
     private String stNumber;
     private String file;
     private Integer status;
