@@ -1,6 +1,6 @@
 package com.matrix.matrix158springpracticeapp.service.implementation;
 
-import com.matrix.matrix158springpracticeapp.dto.request.CategoryRequest;
+import com.matrix.matrix158springpracticeapp.dto.request.CategoryRequestDto;
 import com.matrix.matrix158springpracticeapp.dto.response.CategoryResponse;
 import com.matrix.matrix158springpracticeapp.entity.Category;
 import com.matrix.matrix158springpracticeapp.mapper.CategoryMapper;
@@ -45,20 +45,20 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryResponse save(CategoryRequest categoryRequest) {
-        Category category = categoryMapper.toEntity(categoryRequest);
+    public CategoryResponse save(CategoryRequestDto categoryRequestDto) {
+        Category category = categoryMapper.toEntity(categoryRequestDto);
         return categoryMapper.entityToCategoryResponse(categoryRepository.save(category));
     }
 
     @Override
-    public CategoryResponse update(CategoryRequest categoryRequest, Integer id) {
+    public CategoryResponse update(CategoryRequestDto categoryRequestDto, Integer id) {
         Category existingCategory = categoryRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Category not found"));
-        existingCategory.setName(categoryRequest.getName());
-        existingCategory.setSyllabusPath(categoryRequest.getName());
-        existingCategory.setStatus(categoryRequest.getStatus());
-        existingCategory.setAmount(categoryRequest.getAmount());
-        existingCategory.setCurrency(categoryRequest.getCurrency());
+        existingCategory.setName(categoryRequestDto.getName());
+        existingCategory.setSyllabusPath(categoryRequestDto.getName());
+        existingCategory.setStatus(categoryRequestDto.getStatus());
+        existingCategory.setAmount(categoryRequestDto.getAmount());
+        existingCategory.setCurrency(categoryRequestDto.getCurrency());
 
         Category updatedCategory = categoryRepository.save(existingCategory);
         log.info("Category updated: {}", updatedCategory);
