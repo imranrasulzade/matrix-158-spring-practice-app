@@ -1,6 +1,6 @@
 package com.matrix.matrix158springpracticeapp.mapper;
 
-import com.matrix.matrix158springpracticeapp.dto.request.StudentRequest;
+import com.matrix.matrix158springpracticeapp.dto.request.StudentRequestDto;
 import com.matrix.matrix158springpracticeapp.dto.response.StudentResponseDto;
 import com.matrix.matrix158springpracticeapp.entity.Student;
 import org.mapstruct.Mapper;
@@ -12,5 +12,5 @@ public abstract class StudentMapper {
     @Mapping(source = "user.name", target = "name")
     @Mapping(source = "user.surname", target = "surname")
     public abstract StudentResponseDto toDTO(Student student);
-    public abstract Student toEntity (StudentRequest studentRequest);
+    public abstract Student toEntity (StudentRequestDto studentRequestDto);
 }

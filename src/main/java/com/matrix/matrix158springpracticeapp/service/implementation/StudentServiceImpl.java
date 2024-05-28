@@ -1,6 +1,6 @@
 package com.matrix.matrix158springpracticeapp.service.implementation;
 
-import com.matrix.matrix158springpracticeapp.dto.request.StudentRequest;
+import com.matrix.matrix158springpracticeapp.dto.request.StudentRequestDto;
 import com.matrix.matrix158springpracticeapp.dto.response.StudentResponseDto;
 import com.matrix.matrix158springpracticeapp.entity.Student;
 import com.matrix.matrix158springpracticeapp.entity.User;
@@ -25,7 +25,7 @@ public class StudentServiceImpl implements StudentService {
     private final UserRepository userRepository;
 
     @Override
-    public StudentResponseDto getById(Integer id) {
+    public StudentResponseDto findById(Integer id) {
         log.info("Started the get by id operation with id = " + id);
         Student student = studentRepository.findById(id).orElseThrow(() -> {
             log.error("Student with id {} not found ", id);
@@ -35,7 +35,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<StudentResponseDto> getAll() {
+    public List<StudentResponseDto> findAll() {
         log.info("Started the get all students!");
         List<Student> students = studentRepository.findAll();
         if (students.isEmpty()){
@@ -47,11 +47,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentResponseDto add(StudentRequest studentRequest) {
+    public StudentResponseDto save(StudentRequestDto studentRequestDto) {
         log.info("Started add student operation");
-        Student student = studentMapper.toEntity(studentRequest);
-        User user = userRepository.findById(studentRequest.getUserId()).
-                orElseThrow(()-> new NoSuchElementException("User not found with id = " + studentRequest.getUserId()));
+        Student student = studentMapper.toEntity(studentRequestDto);
+        User user = userRepository.findById(studentRequestDto.getUserId()).
+                orElseThrow(()-> new NoSuchElementException("User not found with id = " + studentRequestDto.getUserId()));
         student.setUser(user);
         log.info("Successfully");
         return studentMapper.toDTO(studentRepository.save(student));
@@ -59,22 +59,22 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentResponseDto update(StudentRequest studentRequest,Integer studentId) {
+    public StudentResponseDto update(StudentRequestDto studentRequestDto, Integer studentId) {
         log.info("Started update student operation for studentId = {}", studentId);
 
         Student existingStudent = studentRepository.findById(studentId)
                 .orElseThrow(() -> new NoSuchElementException("Student not found with id = " + studentId));
 
-        existingStudent.setStNumber(studentRequest.getStNumber());
-        existingStudent.setFile(studentRequest.getFile());
-        existingStudent.setStatus(studentRequest.getStatus());
-        existingStudent.setBankAccount(studentRequest.getBankAccount());
+        existingStudent.setStNumber(studentRequestDto.getStNumber());
+        existingStudent.setFile(studentRequestDto.getFile());
+        existingStudent.setStatus(studentRequestDto.getStatus());
+        existingStudent.setBankAccount(studentRequestDto.getBankAccount());
         log.info("Successfully updated student with id = {}", studentId);
         return studentMapper.toDTO(studentRepository.save(existingStudent));
     }
 
     @Override
-    public void delete(Integer id) {
+    public void deleteById(Integer id) {
         if (studentRepository.existsById(id)){
             log.info("searched with id = " + id + " student");
             studentRepository.deleteById(id);
