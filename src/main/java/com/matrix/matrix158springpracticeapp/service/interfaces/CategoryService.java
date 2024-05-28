@@ -6,9 +6,9 @@ import com.matrix.matrix158springpracticeapp.dto.response.CategoryResponse;
 import java.util.List;
 
 public interface CategoryService{
-    CategoryResponse getById(Integer id);
-    List<CategoryResponse> getAll();
-    CategoryResponse add(CategoryRequest categoryRequest);
+    CategoryResponse findById(Integer id);
+    List<CategoryResponse> findAll();
+    CategoryResponse save(CategoryRequest categoryRequest);
     CategoryResponse update(CategoryRequest categoryRequest,Integer id);
-    void delete(Integer id);
+    void deleteById(Integer id);
 }

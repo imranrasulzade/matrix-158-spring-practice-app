@@ -25,7 +25,7 @@ public class StudentServiceImpl implements StudentService {
     private final UserRepository userRepository;
 
     @Override
-    public StudentResponseDto getById(Integer id) {
+    public StudentResponse findById(Integer id) {
         log.info("Started the get by id operation with id = " + id);
         Student student = studentRepository.findById(id).orElseThrow(() -> {
             log.error("Student with id {} not found ", id);
@@ -35,7 +35,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<StudentResponseDto> getAll() {
+    public List<StudentResponse> findAll() {
         log.info("Started the get all students!");
         List<Student> students = studentRepository.findAll();
         if (students.isEmpty()){
@@ -47,7 +47,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentResponseDto add(StudentRequest studentRequest) {
+    public StudentResponse save(StudentRequest studentRequest) {
         log.info("Started add student operation");
         Student student = studentMapper.toEntity(studentRequest);
         User user = userRepository.findById(studentRequest.getUserId()).
@@ -74,7 +74,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void deleteById(Integer id) {
         if (studentRepository.existsById(id)){
             log.info("searched with id = " + id + " student");
             studentRepository.deleteById(id);

@@ -3,7 +3,7 @@ spring:
     name: matrix-158-spring-practice-app
 
   datasource:
-    url: jdbc:mysql://localhost:3306/mj_course_management
+    url: jdbc:mysql://localhost/mj_course_management
     username: root
     password: password
     driver-class-name: com.mysql.cj.jdbc.Driver

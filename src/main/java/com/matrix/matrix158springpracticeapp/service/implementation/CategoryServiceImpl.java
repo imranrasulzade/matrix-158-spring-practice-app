@@ -22,7 +22,7 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryMapper categoryMapper;
 
     @Override
-    public CategoryResponse getById(Integer id) {
+    public CategoryResponse findById(Integer id) {
         log.info("Started the get by id operation with id = {}", id);
         Category category = categoryRepository.findById(id).
                 orElseThrow(() -> {
@@ -33,7 +33,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryResponse> getAll() {
+    public List<CategoryResponse> findAll() {
         log.info("Started the get all categories!");
         List<Category> categories = categoryRepository.findAll();
         if (categories.isEmpty()) {
@@ -45,7 +45,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryResponse add(CategoryRequest categoryRequest) {
+    public CategoryResponse save(CategoryRequest categoryRequest) {
         Category category = categoryMapper.toEntity(categoryRequest);
         return categoryMapper.entityToCategoryResponse(categoryRepository.save(category));
     }
@@ -66,7 +66,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void deleteById(Integer id) {
         log.info("Deleting category with id = {}", id);
         if (!categoryRepository.existsById(id)) {
             log.error("Category with id {} not found", id);

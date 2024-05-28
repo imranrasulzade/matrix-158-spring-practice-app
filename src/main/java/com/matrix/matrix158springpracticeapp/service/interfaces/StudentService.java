@@ -7,10 +7,9 @@ import java.util.List;
 
 
 public interface StudentService {
-
-    StudentResponseDto getById(Integer id);
-    List<StudentResponseDto> getAll();
-    StudentResponseDto add(StudentRequest studentRequest);
-    StudentResponseDto update(StudentRequest studentRequest,Integer id);
-    void delete(Integer id);
+    StudentResponse findById(Integer id);
+    List<StudentResponse> findAll();
+    StudentResponse save(StudentRequest studentRequest);
+    StudentResponse update(StudentRequest studentRequest,Integer id);
+    void deleteById(Integer id);
 }
