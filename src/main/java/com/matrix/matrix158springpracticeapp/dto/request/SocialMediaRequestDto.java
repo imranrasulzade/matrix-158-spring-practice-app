@@ -3,6 +3,6 @@ package com.matrix.matrix158springpracticeapp.dto.request;
 import lombok.Data;
 
 @Data
-public class SocialMediaRequest {
+public class SocialMediaRequestDto {
     private String url;
 }
