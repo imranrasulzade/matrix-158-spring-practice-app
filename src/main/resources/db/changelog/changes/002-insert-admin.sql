@@ -1,0 +1,2 @@
+INSERT INTO mj_course_management.mj_user (username, password, name, surname, email, status)
+VALUES ('admin', '$2a$10$oGwJUd4DAXtwhYuGmH0rK.TvCVp6AlPzpEKPxqU7WRwsqbC59ELXW', 'Admin', 'AdminSurname', 'admin@example.com', 'ACTIVE');

@@ -1,7 +1,7 @@
 package com.matrix.matrix158springpracticeapp.service.implementation;
 
 import com.matrix.matrix158springpracticeapp.dto.request.StudentRequest;
-import com.matrix.matrix158springpracticeapp.dto.response.StudentResponse;
+import com.matrix.matrix158springpracticeapp.dto.response.StudentResponseDto;
 import com.matrix.matrix158springpracticeapp.entity.Student;
 import com.matrix.matrix158springpracticeapp.entity.User;
 import com.matrix.matrix158springpracticeapp.mapper.StudentMapper;
@@ -31,7 +31,7 @@ public class StudentServiceImpl implements StudentService {
             log.error("Student with id {} not found ", id);
             return new NoSuchElementException("Not found Student");
         });
-        return studentMapper.entityToStudentResponse(student);
+        return studentMapper.toDTO(student);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class StudentServiceImpl implements StudentService {
             throw  new NoSuchElementException("Not found students");
         }
         log.info("Successfully " + students);
-        return students.stream().map(studentMapper::entityToStudentResponse).collect(Collectors.toList());
+        return students.stream().map(studentMapper::toDTO).collect(Collectors.toList());
     }
 
     @Override
@@ -54,12 +54,12 @@ public class StudentServiceImpl implements StudentService {
                 orElseThrow(()-> new NoSuchElementException("User not found with id = " + studentRequest.getUserId()));
         student.setUser(user);
         log.info("Successfully");
-        return studentMapper.entityToStudentResponse(studentRepository.save(student));
+        return studentMapper.toDTO(studentRepository.save(student));
 
     }
 
     @Override
-    public StudentResponse update(StudentRequest studentRequest,Integer studentId) {
+    public StudentResponseDto update(StudentRequest studentRequest,Integer studentId) {
         log.info("Started update student operation for studentId = {}", studentId);
 
         Student existingStudent = studentRepository.findById(studentId)
@@ -70,7 +70,7 @@ public class StudentServiceImpl implements StudentService {
         existingStudent.setStatus(studentRequest.getStatus());
         existingStudent.setBankAccount(studentRequest.getBankAccount());
         log.info("Successfully updated student with id = {}", studentId);
-        return studentMapper.entityToStudentResponse(studentRepository.save(existingStudent));
+        return studentMapper.toDTO(studentRepository.save(existingStudent));
     }
 
     @Override
