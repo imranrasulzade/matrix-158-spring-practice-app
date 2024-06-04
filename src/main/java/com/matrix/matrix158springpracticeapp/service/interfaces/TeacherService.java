@@ -14,7 +14,11 @@ public interface TeacherService {
     void deleteById(Integer id);
 
     TeacherResponseDto getById(Integer id);
+    List<TeacherResponseDto> getAll();
+    TeacherResponseDto add(TeacherRequestDto teacherRequestDto);
+    TeacherResponseDto update(Integer id,TeacherRequestDto teacherRequestDto);
+    void delete(Integer id);
 
-    void add(TeacherRequestDto teacherRequestDto);
+
 
 }

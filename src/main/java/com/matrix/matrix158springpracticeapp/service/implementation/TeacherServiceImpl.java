@@ -51,7 +51,49 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public void add(TeacherRequestDto teacherRequestDto) {
-
+    public List<TeacherResponseDto> getAll() {
+        log.info("Action.log -> teacher-service getAll method started");
+        List<Teacher> teachers = teacherRepository.findAll();
+        List<TeacherResponseDto> teacherResponses = teachers.stream()
+                .map(teacherMapper::toDTO)
+                .toList();
+        log.info("Action.log -> teacher-service getAll method done");
+        return teacherResponses;
     }
+
+    @Override
+    public TeacherResponseDto add(TeacherRequestDto teacherRequestDto) {
+        log.info("Action.log -> teacher-service add method started with request: {}", teacherRequestDto);
+        Teacher teacher = teacherMapper.toEntity(teacherRequestDto);
+        Teacher savedTeacher = teacherRepository.save(teacher);
+        TeacherResponseDto teacherResponseDto = teacherMapper.toDTO(savedTeacher);
+        log.info("Action.log -> teacher-service add method done with request: {}", teacherRequestDto);
+        return teacherResponseDto;
+    }
+
+    @Override
+    public TeacherResponseDto update(Integer id, TeacherRequestDto teacherRequestDto) {
+        log.info("Action.log -> teacher-service update method started with id: {} and request: {}", id, teacherRequestDto);
+        Teacher existingTeacher = teacherRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Teacher not found!"));
+
+        // Use the mapper to update the entity, preserving the ID
+        Teacher updatedTeacher = teacherMapper.toEntity(teacherRequestDto);
+        updatedTeacher.setId(existingTeacher.getId());
+
+        Teacher savedTeacher = teacherRepository.save(updatedTeacher);
+        TeacherResponseDto teacherResponseDto = teacherMapper.toDTO(savedTeacher);
+        log.info("Action.log -> teacher-service update method done with id: {} and request: {}", id, teacherRequestDto);
+        return teacherResponseDto;
+    }
+
+    @Override
+    public void delete(Integer id) {
+        log.info("Action.log -> teacher-service delete method started with id: {}", id);
+        Teacher existingTeacher = teacherRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Teacher not found!"));
+        teacherRepository.delete(existingTeacher);
+        log.info("Action.log -> teacher-service delete method done with id: {}", id);
+    }
+
 }
