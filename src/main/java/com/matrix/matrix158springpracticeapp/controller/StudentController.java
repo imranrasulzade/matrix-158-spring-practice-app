@@ -3,6 +3,11 @@ package com.matrix.matrix158springpracticeapp.controller;
 import com.matrix.matrix158springpracticeapp.dto.request.StudentRequestDto;
 import com.matrix.matrix158springpracticeapp.dto.response.StudentResponseDto;
 import com.matrix.matrix158springpracticeapp.service.interfaces.StudentService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +27,16 @@ public class StudentController {
         return studentService.findById(id);
     }
 
+
+
+    @Operation(
+            summary = "Retrieve all",
+            description = "just descriptions for stuednt",
+            tags = {"tutorials", "get"})
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = StudentResponseDto.class), mediaType = "application/json")}),
+            @ApiResponse(responseCode = "404", content = {@Content(schema = @Schema())}),
+            @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
     @GetMapping
     public List<StudentResponseDto> findAll(){
         return studentService.findAll();
